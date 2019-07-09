@@ -28,13 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.dirTreeView = new System.Windows.Forms.TreeView();
+            this.dirBrowser = new System.Windows.Forms.FolderBrowserDialog();
+            this.SuspendLayout();
+            // 
+            // dirTreeView
+            // 
+            this.dirTreeView.Location = new System.Drawing.Point(12, 13);
+            this.dirTreeView.Name = "dirTreeView";
+            this.dirTreeView.Size = new System.Drawing.Size(460, 374);
+            this.dirTreeView.TabIndex = 0;
+            // 
+            // dirBrowser
+            // 
+            this.dirBrowser.HelpRequest += new System.EventHandler(this.DirBrowser_HelpRequest);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(484, 561);
+            this.Controls.Add(this.dirTreeView);
+            this.MaximizeBox = false;
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.TreeView dirTreeView;
+        private System.Windows.Forms.FolderBrowserDialog dirBrowser;
     }
 }
 

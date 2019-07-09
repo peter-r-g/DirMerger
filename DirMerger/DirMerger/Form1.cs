@@ -16,5 +16,15 @@ namespace DirMerger
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            dirBrowser.ShowDialog();
+        }
+
+        private void DirBrowser_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
     }
 }
