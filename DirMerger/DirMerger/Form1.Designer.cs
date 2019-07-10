@@ -63,6 +63,8 @@
             this.Controls.Add(this.itemNotesRichTextBox);
             this.Controls.Add(this.dirTreeView);
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(500, 600);
+            this.MinimumSize = new System.Drawing.Size(500, 600);
             this.Name = "Form1";
             this.Text = "Directory Browser";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
