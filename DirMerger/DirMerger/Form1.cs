@@ -87,6 +87,8 @@ namespace DirMerger
             // Remove the empty node if it exists
             if (e.Node.Nodes[0].Text == "<EMPTY>")
                 e.Node.Nodes[0].Remove();
+            else
+                return;
 
             // Build the file path
             while(curNode.Parent != null)
