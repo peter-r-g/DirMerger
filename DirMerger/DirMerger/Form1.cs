@@ -168,7 +168,6 @@ namespace DirMerger
 
         private void dirTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-
             // Remove the empty node if it exists
             if (e.Node.Nodes[0].Text == "<EMPTY>")
                 e.Node.Nodes[0].Remove();
