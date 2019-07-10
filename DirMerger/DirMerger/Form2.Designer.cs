@@ -75,28 +75,28 @@
             this.textZoomOption1.Name = "textZoomOption1";
             this.textZoomOption1.Size = new System.Drawing.Size(180, 22);
             this.textZoomOption1.Text = "0.5x";
-            this.textZoomOption1.Click += new System.EventHandler(this.textZoomOption1_Click);
+            this.textZoomOption1.Click += new System.EventHandler(this.textZoomOption_Click);
             // 
             // textZoomOption2
             // 
             this.textZoomOption2.Name = "textZoomOption2";
             this.textZoomOption2.Size = new System.Drawing.Size(180, 22);
             this.textZoomOption2.Text = "1x";
-            this.textZoomOption2.Click += new System.EventHandler(this.textZoomOption2_Click);
+            this.textZoomOption2.Click += new System.EventHandler(this.textZoomOption_Click);
             // 
             // textZoomOption3
             // 
             this.textZoomOption3.Name = "textZoomOption3";
             this.textZoomOption3.Size = new System.Drawing.Size(180, 22);
             this.textZoomOption3.Text = "1.5x";
-            this.textZoomOption3.Click += new System.EventHandler(this.textZoomOption3_Click);
+            this.textZoomOption3.Click += new System.EventHandler(this.textZoomOption_Click);
             // 
             // textZoomOption4
             // 
             this.textZoomOption4.Name = "textZoomOption4";
             this.textZoomOption4.Size = new System.Drawing.Size(180, 22);
             this.textZoomOption4.Text = "2x";
-            this.textZoomOption4.Click += new System.EventHandler(this.textZoomOption4_Click);
+            this.textZoomOption4.Click += new System.EventHandler(this.textZoomOption_Click);
             // 
             // Form2
             // 

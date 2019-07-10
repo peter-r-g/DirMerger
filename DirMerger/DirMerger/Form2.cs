@@ -37,24 +37,9 @@ namespace DirMerger
             codeViewer.Size = new Size(newSize.Width - 40, newSize.Height - 78);
         }
 
-        private void textZoomOption1_Click(object sender, EventArgs e)
+        private void textZoomOption_Click(object sender, EventArgs e)
         {
-            codeViewer.ZoomFactor = 0.5f;
-        }
-
-        private void textZoomOption2_Click(object sender, EventArgs e)
-        {
-            codeViewer.ZoomFactor = 1;
-        }
-
-        private void textZoomOption3_Click(object sender, EventArgs e)
-        {
-            codeViewer.ZoomFactor = 1.5f;
-        }
-
-        private void textZoomOption4_Click(object sender, EventArgs e)
-        {
-            codeViewer.ZoomFactor = 2;
+            codeViewer.ZoomFactor = float.Parse(sender.ToString().Replace('x', ' '));
         }
     }
 }
