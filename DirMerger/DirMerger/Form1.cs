@@ -96,6 +96,9 @@ namespace DirMerger
             else
                 throw new Exception("Program did not receive a directory to use!");
 
+            // Change the title to show the folder we're working in
+            this.Text = "Directory Browser - " + curDir;
+
             // Check if this directory has already been looked into
             if (File.Exists(curDir + "\\dir-merger_data.dat"))
             {

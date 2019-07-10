@@ -24,6 +24,8 @@ namespace DirMerger
 
         private void Form2_Load(object sender, EventArgs e)
         {
+            this.Text = "Code Viewer - " + this.filePath;
+
             string[] fileLines = File.ReadAllLines(filePath);
             codeViewer.Lines = fileLines;
         }
@@ -31,54 +33,28 @@ namespace DirMerger
         private void Form2_Resize(object sender, EventArgs e)
         {
             Size newSize = Form2.ActiveForm.Size;
-            codeViewer.Location = new Point(12, 12);
-            codeViewer.Size = new Size(newSize.Width - 40, newSize.Height - 63);
+            codeViewer.Location = new Point(12, 27);
+            codeViewer.Size = new Size(newSize.Width - 40, newSize.Height - 78);
         }
 
-        private void Form2_MouseClick(object sender, MouseEventArgs e)
+        private void textZoomOption1_Click(object sender, EventArgs e)
         {
-            Debug.Print("Hello?");
-            if (e.Button == MouseButtons.Right)
-            {
-                Debug.Print("Hello Again!");
-                contextMenu.Location = new Point(e.X, e.Y);
-                contextMenu.Show();
-            }
+            codeViewer.ZoomFactor = 0.5f;
         }
 
-        private void CodeViewer_MouseClick(object sender, MouseEventArgs e)
+        private void textZoomOption2_Click(object sender, EventArgs e)
         {
-            Debug.Print("Hello?");
-            if (e.Button == MouseButtons.Right)
-            {
-                Debug.Print("Hello Again!");
-                contextMenu.Location = new Point(e.X, e.Y);
-                contextMenu.Show();
-            }
+            codeViewer.ZoomFactor = 1;
         }
 
-        private void ContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        private void textZoomOption3_Click(object sender, EventArgs e)
         {
-            Debug.Print("Hello?");
-            if (e.ClickedItem.GetCurrentParent().Text == "Text Zoom")
-            {
-                Debug.Print("Hello Again!");
-                switch (e.ClickedItem.Text)
-                {
-                    case "0.5x":
-                        codeViewer.ZoomFactor = 0.5f;
-                        break;
-                    case "1x":
-                        codeViewer.ZoomFactor = 1;
-                        break;
-                    case "1.5x":
-                        codeViewer.ZoomFactor = 1.5f;
-                        break;
-                    case "2x":
-                        codeViewer.ZoomFactor = 2;
-                        break;
-                }
-            }
+            codeViewer.ZoomFactor = 1.5f;
+        }
+
+        private void textZoomOption4_Click(object sender, EventArgs e)
+        {
+            codeViewer.ZoomFactor = 2;
         }
     }
 }
