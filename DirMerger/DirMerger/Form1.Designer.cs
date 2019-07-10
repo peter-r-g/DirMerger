@@ -39,6 +39,7 @@
             this.dirTreeView.Size = new System.Drawing.Size(460, 374);
             this.dirTreeView.TabIndex = 0;
             this.dirTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.dirTreeView_BeforeExpand);
+            this.dirTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dirTreeView_NodeMouseDoubleClick);
             // 
             // dirBrowser
             // 

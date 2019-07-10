@@ -79,10 +79,38 @@ namespace DirMerger
             }
         }
 
+        public string GetNodeFilePath(TreeNode node)
+        {
+            TreeNode curNode = node;
+            string filePath = curNode.Text;
+
+            // Build the file path
+            while (curNode.Parent != null)
+            {
+                curNode = curNode.Parent;
+                filePath = curNode.Text + filePath;
+            }
+
+            return filePath;
+        }
+
+        public bool ValidFileExtension(string extension)
+        {
+            switch (extension)
+            {
+                case "lua":
+                    return true;
+                case "vmt":
+                    return true;
+                case "vtf":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
         private void dirTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
-            TreeNode curNode = e.Node;
-            string filePath = curNode.Text;
 
             // Remove the empty node if it exists
             if (e.Node.Nodes[0].Text == "<EMPTY>")
@@ -90,12 +118,7 @@ namespace DirMerger
             else
                 return;
 
-            // Build the file path
-            while(curNode.Parent != null)
-            {
-                curNode = curNode.Parent;
-                filePath = curNode.Text + filePath;
-            }
+            string filePath = GetNodeFilePath(e.Node);
 
             // Add the file nodes
             string[] files = Directory.GetFiles(filePath);
@@ -106,6 +129,19 @@ namespace DirMerger
                 fileNode.ImageIndex = 0;
                 fileNode.SelectedImageIndex = 0;
                 e.Node.Nodes.Add(fileNode);
+            }
+        }
+
+        private void dirTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            string[] nodeTextPieces = e.Node.Text.Split('.');
+
+            if (ValidFileExtension(nodeTextPieces[nodeTextPieces.Length-1]))
+            {
+                string filePath = GetNodeFilePath(e.Node);
+
+                Form2 codeView = new Form2(filePath);
+                codeView.Show();
             }
         }
 
