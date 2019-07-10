@@ -19,6 +19,8 @@ namespace DirMerger
         bool editing = false;
         bool saved = true;
 
+        EditItemNotes editItemNotes;
+
         public CodeViewer()
         {
             InitializeComponent();
@@ -27,6 +29,7 @@ namespace DirMerger
         public void Setup(string filePath)
         {
             this.filePath = filePath;
+            editItemNotes = new EditItemNotes(this.filePath);
         }
 
         private void SaveFile()
@@ -53,6 +56,9 @@ namespace DirMerger
                 if (result == DialogResult.Yes)
                     SaveFile();
             }
+
+            e.Cancel = true;
+            Hide();
         }
 
         private void CodeViewer_Resize(object sender, EventArgs e)
@@ -91,6 +97,11 @@ namespace DirMerger
         private void TextZoomOption_Click(object sender, EventArgs e)
         {
             codeViewerTextBox.ZoomFactor = float.Parse(sender.ToString().Replace('x', ' '));
+        }
+
+        private void ItemNotesOption_Click(object sender, EventArgs e)
+        {
+            editItemNotes.Show();
         }
     }
 }

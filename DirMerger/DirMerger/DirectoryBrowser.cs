@@ -17,7 +17,7 @@ namespace DirMerger
         private readonly string resourceDir = Application.StartupPath + "\\resource\\";
         public string curDir = Environment.CurrentDirectory;
 
-        Dictionary<string, string[]> itemNotesDictionary = new Dictionary<string, string[]>();
+        public static Dictionary<string, string[]> itemNotesDictionary = new Dictionary<string, string[]>();
         string[] codeViewerExtensions;
         TreeNode curSelectedNode;
 

@@ -58,6 +58,12 @@
     <Compile Include="CodeViewer.Designer.cs">
       <DependentUpon>CodeViewer.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditItemNotes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditItemNotes.Designer.cs">
+      <DependentUpon>EditItemNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="DirectoryBrowser.resx">
@@ -65,6 +71,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CodeViewer.resx">
       <DependentUpon>CodeViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditItemNotes.resx">
+      <DependentUpon>EditItemNotes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -30,21 +30,22 @@
         {
             this.codeViewerTextBox = new System.Windows.Forms.RichTextBox();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
+            this.editMenuTab = new System.Windows.Forms.ToolStripMenuItem();
+            this.editingOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveOption = new System.Windows.Forms.ToolStripMenuItem();
+            this.itemNotesOption = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomMenuTab = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomOption1 = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomOption2 = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomOption3 = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomOption4 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editMenuTab = new System.Windows.Forms.ToolStripMenuItem();
-            this.editingOption = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveOption = new System.Windows.Forms.ToolStripMenuItem();
             this.mainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
-            // codeViewer
+            // codeViewerTextBox
             // 
             this.codeViewerTextBox.Location = new System.Drawing.Point(12, 27);
-            this.codeViewerTextBox.Name = "codeViewer";
+            this.codeViewerTextBox.Name = "codeViewerTextBox";
             this.codeViewerTextBox.ReadOnly = true;
             this.codeViewerTextBox.Size = new System.Drawing.Size(560, 722);
             this.codeViewerTextBox.TabIndex = 0;
@@ -64,50 +65,12 @@
             this.mainMenu.TabIndex = 1;
             this.mainMenu.Text = "menuStrip1";
             // 
-            // textZoomMenuTab
-            // 
-            this.textZoomMenuTab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.textZoomOption1,
-            this.textZoomOption2,
-            this.textZoomOption3,
-            this.textZoomOption4});
-            this.textZoomMenuTab.Name = "textZoomMenuTab";
-            this.textZoomMenuTab.Size = new System.Drawing.Size(75, 20);
-            this.textZoomMenuTab.Text = "Text Zoom";
-            // 
-            // textZoomOption1
-            // 
-            this.textZoomOption1.Name = "textZoomOption1";
-            this.textZoomOption1.Size = new System.Drawing.Size(180, 22);
-            this.textZoomOption1.Text = "0.5x";
-            this.textZoomOption1.Click += new System.EventHandler(this.TextZoomOption_Click);
-            // 
-            // textZoomOption2
-            // 
-            this.textZoomOption2.Name = "textZoomOption2";
-            this.textZoomOption2.Size = new System.Drawing.Size(180, 22);
-            this.textZoomOption2.Text = "1x";
-            this.textZoomOption2.Click += new System.EventHandler(this.TextZoomOption_Click);
-            // 
-            // textZoomOption3
-            // 
-            this.textZoomOption3.Name = "textZoomOption3";
-            this.textZoomOption3.Size = new System.Drawing.Size(180, 22);
-            this.textZoomOption3.Text = "1.5x";
-            this.textZoomOption3.Click += new System.EventHandler(this.TextZoomOption_Click);
-            // 
-            // textZoomOption4
-            // 
-            this.textZoomOption4.Name = "textZoomOption4";
-            this.textZoomOption4.Size = new System.Drawing.Size(180, 22);
-            this.textZoomOption4.Text = "2x";
-            this.textZoomOption4.Click += new System.EventHandler(this.TextZoomOption_Click);
-            // 
             // editMenuTab
             // 
             this.editMenuTab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.editingOption,
-            this.saveOption});
+            this.saveOption,
+            this.itemNotesOption});
             this.editMenuTab.Name = "editMenuTab";
             this.editMenuTab.Size = new System.Drawing.Size(39, 20);
             this.editMenuTab.Text = "Edit";
@@ -126,7 +89,53 @@
             this.saveOption.Text = "Save";
             this.saveOption.Click += new System.EventHandler(this.SaveOption_Click);
             // 
-            // Form2
+            // itemNotesOption
+            // 
+            this.itemNotesOption.Name = "itemNotesOption";
+            this.itemNotesOption.Size = new System.Drawing.Size(180, 22);
+            this.itemNotesOption.Text = "Item Notes";
+            this.itemNotesOption.Click += new System.EventHandler(this.ItemNotesOption_Click);
+            // 
+            // textZoomMenuTab
+            // 
+            this.textZoomMenuTab.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.textZoomOption1,
+            this.textZoomOption2,
+            this.textZoomOption3,
+            this.textZoomOption4});
+            this.textZoomMenuTab.Name = "textZoomMenuTab";
+            this.textZoomMenuTab.Size = new System.Drawing.Size(75, 20);
+            this.textZoomMenuTab.Text = "Text Zoom";
+            // 
+            // textZoomOption1
+            // 
+            this.textZoomOption1.Name = "textZoomOption1";
+            this.textZoomOption1.Size = new System.Drawing.Size(95, 22);
+            this.textZoomOption1.Text = "0.5x";
+            this.textZoomOption1.Click += new System.EventHandler(this.TextZoomOption_Click);
+            // 
+            // textZoomOption2
+            // 
+            this.textZoomOption2.Name = "textZoomOption2";
+            this.textZoomOption2.Size = new System.Drawing.Size(95, 22);
+            this.textZoomOption2.Text = "1x";
+            this.textZoomOption2.Click += new System.EventHandler(this.TextZoomOption_Click);
+            // 
+            // textZoomOption3
+            // 
+            this.textZoomOption3.Name = "textZoomOption3";
+            this.textZoomOption3.Size = new System.Drawing.Size(95, 22);
+            this.textZoomOption3.Text = "1.5x";
+            this.textZoomOption3.Click += new System.EventHandler(this.TextZoomOption_Click);
+            // 
+            // textZoomOption4
+            // 
+            this.textZoomOption4.Name = "textZoomOption4";
+            this.textZoomOption4.Size = new System.Drawing.Size(95, 22);
+            this.textZoomOption4.Text = "2x";
+            this.textZoomOption4.Click += new System.EventHandler(this.TextZoomOption_Click);
+            // 
+            // CodeViewer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -134,7 +143,7 @@
             this.Controls.Add(this.mainMenu);
             this.Controls.Add(this.codeViewerTextBox);
             this.MainMenuStrip = this.mainMenu;
-            this.Name = "Form2";
+            this.Name = "CodeViewer";
             this.Text = "Code Viewer";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CodeViewer_FormClosing);
             this.Load += new System.EventHandler(this.CodeViewer_Load);
@@ -158,5 +167,6 @@
         private System.Windows.Forms.ToolStripMenuItem editMenuTab;
         private System.Windows.Forms.ToolStripMenuItem editingOption;
         private System.Windows.Forms.ToolStripMenuItem saveOption;
+        private System.Windows.Forms.ToolStripMenuItem itemNotesOption;
     }
 }
