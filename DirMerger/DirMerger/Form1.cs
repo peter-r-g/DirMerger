@@ -14,7 +14,7 @@ namespace DirMerger
 {
     public partial class Form1 : Form
     {
-        private string resourceDir = Application.StartupPath + "\\resource\\";
+        private readonly string resourceDir = Application.StartupPath + "\\resource\\";
         public string curDir = Environment.CurrentDirectory;
 
         public Form1()
@@ -40,32 +40,59 @@ namespace DirMerger
             else
                 throw new Exception("Program did not receive a directory to use!");
 
-            // Get all directories and files in there
-            string[] directories = Directory.GetDirectories(curDir);
-            string[] files = Directory.GetFiles(curDir);
 
             // Start updating the tree view
             dirTreeView.BeginUpdate();
-            foreach (string dir in directories)
-            {
-                string formattedDir = dir.Replace(curDir, "");
-                TreeNode dirNode = new TreeNode(formattedDir);
-                dirNode.ImageIndex = 1;
-                dirTreeView.Nodes.Add(dirNode);
-            }
-            foreach (string file in files)
-            {
-                string formattedFile = file.Replace(curDir, "");
-                TreeNode fileNode = new TreeNode(formattedFile);
-                fileNode.ImageIndex = 0;
-                dirTreeView.Nodes.Add(fileNode);
-            }
+
+            // Create the root node
+            TreeNode rootNode = new TreeNode(curDir);
+            rootNode.ImageIndex = 1;
+            dirTreeView.Nodes.Add(rootNode);
+
+            // Search every dir and file to create the tree view
+            SearchDir(curDir, dirTreeView.Nodes[0]);
+
             dirTreeView.EndUpdate();
         }
 
         private void DirBrowser_HelpRequest(object sender, EventArgs e)
         {
             
+        }
+
+        TreeNode GetNode(int[] nodePath)
+        {
+            TreeNode curNode = dirTreeView.Nodes[0];
+
+            foreach (int nodeIndex in nodePath)
+            {
+                curNode = curNode.Nodes[nodeIndex];
+            }
+
+            return curNode;
+        }
+
+        public void SearchDir(string dir, TreeNode parentNode)
+        {
+            Debug.Print(dir);
+            string[] directories = Directory.GetDirectories(dir);
+            string[] files = Directory.GetFiles(dir);
+
+            foreach (string _dir in directories)
+            {
+                string formattedDir = _dir.Replace(curDir, "");
+                TreeNode dirNode = new TreeNode(formattedDir);
+                dirNode.ImageIndex = 1;
+                parentNode.Nodes.Add(dirNode);
+                SearchDir(_dir, dirNode);
+            }
+            foreach (string file in files)
+            {
+                string formattedFile = file.Replace(curDir, "");
+                TreeNode fileNode = new TreeNode(formattedFile);
+                fileNode.ImageIndex = 0;
+                parentNode.Nodes.Add(fileNode);
+            }
         }
     }
 }
