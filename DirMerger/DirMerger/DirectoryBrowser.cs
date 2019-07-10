@@ -227,7 +227,5 @@ namespace DirMerger
                     codeViewer.Show();
             }
         }
-
-        private void DirBrowser_HelpRequest(object sender, EventArgs e) {  }
     }
 }

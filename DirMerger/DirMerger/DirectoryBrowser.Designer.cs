@@ -43,10 +43,6 @@
             this.dirTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.DirTreeView_NodeMouseClick);
             this.dirTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.DirTreeView_NodeMouseDoubleClick);
             // 
-            // dirBrowser
-            // 
-            this.dirBrowser.HelpRequest += new System.EventHandler(this.DirBrowser_HelpRequest);
-            // 
             // itemNotesRichTextBox
             // 
             this.itemNotesRichTextBox.Location = new System.Drawing.Point(12, 393);
