@@ -18,6 +18,7 @@ namespace DirMerger
         public string curDir = Environment.CurrentDirectory;
 
         Dictionary<string, string[]> itemNotesDictionary = new Dictionary<string, string[]>();
+        string[] codeViewerExtensions;
         TreeNode curSelectedNode;
 
         public Form1()
@@ -65,25 +66,13 @@ namespace DirMerger
 
         public bool ValidFileExtension(string extension)
         {
-            switch (extension)
+            foreach (string ext in codeViewerExtensions)
             {
-                case "txt":
+                if (extension == ext)
                     return true;
-                case "dat":
-                    return true;
-                case "md":
-                    return true;
-                case "cfg":
-                    return true;
-                case "lua":
-                    return true;
-                case "vmt":
-                    return true;
-                case "vtf":
-                    return true;
-                default:
-                    return false;
             }
+
+            return false;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -94,6 +83,9 @@ namespace DirMerger
             treeViewImages.Images.Add(Image.FromFile(resourceDir + "folder-icon.png"));
 
             dirTreeView.ImageList = treeViewImages;
+
+            // Load code viewer extensions
+            codeViewerExtensions = File.ReadAllLines(resourceDir + "code-extensions.dat");
 
             // Get the folder we're working in
             DialogResult result = dirBrowser.ShowDialog();
