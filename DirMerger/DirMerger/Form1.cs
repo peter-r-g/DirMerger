@@ -47,6 +47,7 @@ namespace DirMerger
             // Create the root node
             TreeNode rootNode = new TreeNode(curDir);
             rootNode.ImageIndex = 1;
+            rootNode.SelectedImageIndex = 1;
             dirTreeView.Nodes.Add(rootNode);
 
             // Search every dir and file to create the tree view
@@ -55,44 +56,57 @@ namespace DirMerger
             dirTreeView.EndUpdate();
         }
 
-        private void DirBrowser_HelpRequest(object sender, EventArgs e)
-        {
-            
-        }
-
-        TreeNode GetNode(int[] nodePath)
-        {
-            TreeNode curNode = dirTreeView.Nodes[0];
-
-            foreach (int nodeIndex in nodePath)
-            {
-                curNode = curNode.Nodes[nodeIndex];
-            }
-
-            return curNode;
-        }
-
         public void SearchDir(string dir, TreeNode parentNode)
         {
-            Debug.Print(dir);
             string[] directories = Directory.GetDirectories(dir);
-            string[] files = Directory.GetFiles(dir);
 
+            // If the directory has no directories in it then add an empty node so we can check if it has files later
+            if (directories.Length == 0)
+            {
+                parentNode.Nodes.Add("<EMPTY>");
+                return;
+            }
+
+            // Add each directory
             foreach (string _dir in directories)
             {
-                string formattedDir = _dir.Replace(curDir, "");
+                string formattedDir = _dir.Replace(dir, "");
                 TreeNode dirNode = new TreeNode(formattedDir);
                 dirNode.ImageIndex = 1;
+                dirNode.SelectedImageIndex = 1;
                 parentNode.Nodes.Add(dirNode);
                 SearchDir(_dir, dirNode);
             }
+        }
+
+        private void dirTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        {
+            TreeNode curNode = e.Node;
+            string filePath = curNode.Text;
+
+            // Remove the empty node if it exists
+            if (e.Node.Nodes[0].Text == "<EMPTY>")
+                e.Node.Nodes[0].Remove();
+
+            // Build the file path
+            while(curNode.Parent != null)
+            {
+                curNode = curNode.Parent;
+                filePath = curNode.Text + filePath;
+            }
+
+            // Add the file nodes
+            string[] files = Directory.GetFiles(filePath);
             foreach (string file in files)
             {
-                string formattedFile = file.Replace(curDir, "");
+                string formattedFile = file.Replace(filePath, "");
                 TreeNode fileNode = new TreeNode(formattedFile);
                 fileNode.ImageIndex = 0;
-                parentNode.Nodes.Add(fileNode);
+                fileNode.SelectedImageIndex = 0;
+                e.Node.Nodes.Add(fileNode);
             }
         }
+
+        private void DirBrowser_HelpRequest(object sender, EventArgs e) {  }
     }
 }
