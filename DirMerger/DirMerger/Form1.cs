@@ -98,6 +98,12 @@ namespace DirMerger
         {
             switch (extension)
             {
+                case "txt":
+                    return true;
+                case "md":
+                    return true;
+                case "cfg":
+                    return true;
                 case "lua":
                     return true;
                 case "vmt":
@@ -136,6 +142,7 @@ namespace DirMerger
         {
             string[] nodeTextPieces = e.Node.Text.Split('.');
 
+            // Check that the file we're trying to open is a valid file
             if (ValidFileExtension(nodeTextPieces[nodeTextPieces.Length-1]))
             {
                 string filePath = GetNodeFilePath(e.Node);
