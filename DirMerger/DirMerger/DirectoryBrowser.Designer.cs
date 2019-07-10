@@ -1,6 +1,6 @@
 ﻿namespace DirMerger
 {
-    partial class Form1
+    partial class DirectoryBrowser
     {
         /// <summary>
         /// Required designer variable.
@@ -39,9 +39,9 @@
             this.dirTreeView.Name = "dirTreeView";
             this.dirTreeView.Size = new System.Drawing.Size(460, 374);
             this.dirTreeView.TabIndex = 0;
-            this.dirTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.dirTreeView_BeforeExpand);
-            this.dirTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dirTreeView_NodeMouseClick);
-            this.dirTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.dirTreeView_NodeMouseDoubleClick);
+            this.dirTreeView.BeforeExpand += new System.Windows.Forms.TreeViewCancelEventHandler(this.DirTreeView_BeforeExpand);
+            this.dirTreeView.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.DirTreeView_NodeMouseClick);
+            this.dirTreeView.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.DirTreeView_NodeMouseDoubleClick);
             // 
             // dirBrowser
             // 
@@ -67,8 +67,8 @@
             this.MinimumSize = new System.Drawing.Size(500, 600);
             this.Name = "Form1";
             this.Text = "Directory Browser";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.DirectoryBrowser_FormClosing);
+            this.Load += new System.EventHandler(this.DirectoryBrowser_Load);
             this.ResumeLayout(false);
 
         }

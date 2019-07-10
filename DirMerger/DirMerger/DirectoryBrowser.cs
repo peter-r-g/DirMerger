@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace DirMerger
 {
-    public partial class Form1 : Form
+    public partial class DirectoryBrowser : Form
     {
         private readonly string resourceDir = Application.StartupPath + "\\resource\\";
         public string curDir = Environment.CurrentDirectory;
@@ -21,7 +21,9 @@ namespace DirMerger
         string[] codeViewerExtensions;
         TreeNode curSelectedNode;
 
-        public Form1()
+        public CodeViewer codeViewer = new CodeViewer();
+
+        public DirectoryBrowser()
         {
             InitializeComponent();
         }
@@ -75,7 +77,7 @@ namespace DirMerger
             return false;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void DirectoryBrowser_Load(object sender, EventArgs e)
         {
             // Load tree view images
             ImageList treeViewImages = new ImageList();
@@ -94,7 +96,7 @@ namespace DirMerger
             if (result == DialogResult.OK)
                 curDir = dirBrowser.SelectedPath;
             else
-                throw new Exception("Program did not receive a directory to use!");
+                Application.Exit();
 
             // Change the title to show the folder we're working in
             this.Text = "Directory Browser - " + curDir;
@@ -130,10 +132,9 @@ namespace DirMerger
             dirTreeView.EndUpdate();
         }
 
-        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        private void DirectoryBrowser_FormClosing(object sender, FormClosingEventArgs e)
         {
             List<string> fileLines = new List<string>();
-            int i = 0;
 
             // Loop through every dictionary 
             foreach (KeyValuePair<string, string[]> itemNotes in itemNotesDictionary)
@@ -159,9 +160,12 @@ namespace DirMerger
             // Write all the data if we have any
             if (fileLines.Count > 0)
                 File.WriteAllLines(curDir + "\\dir-merger_data.dat", fileLines.ToArray());
+
+            // Close the entire program since we are now done
+            Application.Exit();
         }
 
-        private void dirTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        private void DirTreeView_BeforeExpand(object sender, TreeViewCancelEventArgs e)
         {
             // Remove the empty node if it exists
             if (e.Node.Nodes[0].Text == "<EMPTY>")
@@ -183,7 +187,7 @@ namespace DirMerger
             }
         }
 
-        private void dirTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void DirTreeView_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             // If there was a node already being worked on then save that
             if (curSelectedNode != null)
@@ -207,7 +211,7 @@ namespace DirMerger
             itemNotesRichTextBox.Lines = itemNotes;
         }
 
-        private void dirTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void DirTreeView_NodeMouseDoubleClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             string[] nodeTextPieces = e.Node.Text.Split('.');
 
@@ -216,8 +220,11 @@ namespace DirMerger
             {
                 string filePath = GetNodeFilePath(e.Node);
 
-                Form2 codeView = new Form2(filePath);
-                codeView.Show();
+                codeViewer.CodeViewer_FormClosing(new object(), new FormClosingEventArgs(CloseReason.None, false));
+                codeViewer.Setup(filePath);
+                codeViewer.CodeViewer_Load(new object(), new EventArgs());
+                if (!codeViewer.Visible)
+                    codeViewer.Show();
             }
         }
 

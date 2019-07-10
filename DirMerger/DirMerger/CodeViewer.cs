@@ -12,35 +12,39 @@ using System.Windows.Forms;
 
 namespace DirMerger
 {
-    public partial class Form2 : Form
+    public partial class CodeViewer : Form
     {
         public string filePath;
 
         bool editing = false;
         bool saved = true;
 
-        public Form2(string filePath)
+        public CodeViewer()
+        {
+            InitializeComponent();
+        }
+
+        public void Setup(string filePath)
         {
             this.filePath = filePath;
-            InitializeComponent();
         }
 
         private void SaveFile()
         {
             saved = true;
-            File.WriteAllLines(filePath, codeViewer.Lines);
+            File.WriteAllLines(filePath, codeViewerTextBox.Lines);
         }
 
-        private void Form2_Load(object sender, EventArgs e)
+        public void CodeViewer_Load(object sender, EventArgs e)
         {
             this.Text = "Code Viewer - " + filePath;
 
             string[] fileLines = File.ReadAllLines(filePath);
-            codeViewer.Lines = fileLines;
+            codeViewerTextBox.Lines = fileLines;
             saved = true;
         }
 
-        private void Form2_FormClosing(object sender, FormClosingEventArgs e)
+        public void CodeViewer_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (!saved)
             {
@@ -51,14 +55,14 @@ namespace DirMerger
             }
         }
 
-        private void Form2_Resize(object sender, EventArgs e)
+        private void CodeViewer_Resize(object sender, EventArgs e)
         {
             Size newSize = this.Size;
-            codeViewer.Location = new Point(12, 27);
-            codeViewer.Size = new Size(newSize.Width - 40, newSize.Height - 78);
+            codeViewerTextBox.Location = new Point(12, 27);
+            codeViewerTextBox.Size = new Size(newSize.Width - 40, newSize.Height - 78);
         }
 
-        private void CodeViewer_TextChanged(object sender, EventArgs e)
+        private void CodeViewerTextBox_TextChanged(object sender, EventArgs e)
         {
             saved = false;
         }
@@ -69,13 +73,13 @@ namespace DirMerger
             {
                 editing = false;
                 editingOption.Text = "Start Editing";
-                codeViewer.ReadOnly = true;
+                codeViewerTextBox.ReadOnly = true;
             }
             else
             {
                 editing = true;
                 editingOption.Text = "Stop Editing";
-                codeViewer.ReadOnly = false;
+                codeViewerTextBox.ReadOnly = false;
             }
         }
 
@@ -86,7 +90,7 @@ namespace DirMerger
 
         private void TextZoomOption_Click(object sender, EventArgs e)
         {
-            codeViewer.ZoomFactor = float.Parse(sender.ToString().Replace('x', ' '));
+            codeViewerTextBox.ZoomFactor = float.Parse(sender.ToString().Replace('x', ' '));
         }
     }
 }

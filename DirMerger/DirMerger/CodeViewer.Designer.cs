@@ -1,6 +1,6 @@
 ﻿namespace DirMerger
 {
-    partial class Form2
+    partial class CodeViewer
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.codeViewer = new System.Windows.Forms.RichTextBox();
+            this.codeViewerTextBox = new System.Windows.Forms.RichTextBox();
             this.mainMenu = new System.Windows.Forms.MenuStrip();
             this.textZoomMenuTab = new System.Windows.Forms.ToolStripMenuItem();
             this.textZoomOption1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,15 +43,15 @@
             // 
             // codeViewer
             // 
-            this.codeViewer.Location = new System.Drawing.Point(12, 27);
-            this.codeViewer.Name = "codeViewer";
-            this.codeViewer.ReadOnly = true;
-            this.codeViewer.Size = new System.Drawing.Size(560, 722);
-            this.codeViewer.TabIndex = 0;
-            this.codeViewer.Text = "";
-            this.codeViewer.WordWrap = false;
-            this.codeViewer.ZoomFactor = 2F;
-            this.codeViewer.TextChanged += new System.EventHandler(this.CodeViewer_TextChanged);
+            this.codeViewerTextBox.Location = new System.Drawing.Point(12, 27);
+            this.codeViewerTextBox.Name = "codeViewer";
+            this.codeViewerTextBox.ReadOnly = true;
+            this.codeViewerTextBox.Size = new System.Drawing.Size(560, 722);
+            this.codeViewerTextBox.TabIndex = 0;
+            this.codeViewerTextBox.Text = "";
+            this.codeViewerTextBox.WordWrap = false;
+            this.codeViewerTextBox.ZoomFactor = 2F;
+            this.codeViewerTextBox.TextChanged += new System.EventHandler(this.CodeViewerTextBox_TextChanged);
             // 
             // mainMenu
             // 
@@ -132,13 +132,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(584, 761);
             this.Controls.Add(this.mainMenu);
-            this.Controls.Add(this.codeViewer);
+            this.Controls.Add(this.codeViewerTextBox);
             this.MainMenuStrip = this.mainMenu;
             this.Name = "Form2";
             this.Text = "Code Viewer";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
-            this.Load += new System.EventHandler(this.Form2_Load);
-            this.Resize += new System.EventHandler(this.Form2_Resize);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.CodeViewer_FormClosing);
+            this.Load += new System.EventHandler(this.CodeViewer_Load);
+            this.Resize += new System.EventHandler(this.CodeViewer_Resize);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.ResumeLayout(false);
@@ -148,7 +148,7 @@
 
         #endregion
 
-        private System.Windows.Forms.RichTextBox codeViewer;
+        private System.Windows.Forms.RichTextBox codeViewerTextBox;
         private System.Windows.Forms.MenuStrip mainMenu;
         private System.Windows.Forms.ToolStripMenuItem textZoomMenuTab;
         private System.Windows.Forms.ToolStripMenuItem textZoomOption1;
