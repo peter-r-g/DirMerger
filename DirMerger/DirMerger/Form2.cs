@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -32,6 +33,52 @@ namespace DirMerger
             Size newSize = Form2.ActiveForm.Size;
             codeViewer.Location = new Point(12, 12);
             codeViewer.Size = new Size(newSize.Width - 40, newSize.Height - 63);
+        }
+
+        private void Form2_MouseClick(object sender, MouseEventArgs e)
+        {
+            Debug.Print("Hello?");
+            if (e.Button == MouseButtons.Right)
+            {
+                Debug.Print("Hello Again!");
+                contextMenu.Location = new Point(e.X, e.Y);
+                contextMenu.Show();
+            }
+        }
+
+        private void CodeViewer_MouseClick(object sender, MouseEventArgs e)
+        {
+            Debug.Print("Hello?");
+            if (e.Button == MouseButtons.Right)
+            {
+                Debug.Print("Hello Again!");
+                contextMenu.Location = new Point(e.X, e.Y);
+                contextMenu.Show();
+            }
+        }
+
+        private void ContextMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Debug.Print("Hello?");
+            if (e.ClickedItem.GetCurrentParent().Text == "Text Zoom")
+            {
+                Debug.Print("Hello Again!");
+                switch (e.ClickedItem.Text)
+                {
+                    case "0.5x":
+                        codeViewer.ZoomFactor = 0.5f;
+                        break;
+                    case "1x":
+                        codeViewer.ZoomFactor = 1;
+                        break;
+                    case "1.5x":
+                        codeViewer.ZoomFactor = 1.5f;
+                        break;
+                    case "2x":
+                        codeViewer.ZoomFactor = 2;
+                        break;
+                }
+            }
         }
     }
 }
